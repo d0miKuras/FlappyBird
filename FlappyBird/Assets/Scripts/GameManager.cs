@@ -13,12 +13,12 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BirdController birdController;
-    public GameState gameState { get; private set; }
+    public GameState GameState { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        gameState = GameState.GameStart;
+        GameState = GameState.GameStart;
     }
 
     // Update is called once per frame
@@ -26,14 +26,15 @@ public class GameManager : MonoBehaviour
     {
         if (birdController)
         {
-            if (gameState == GameState.GameStart && Input.touchCount > 0)
+            if (GameState == GameState.GameStart && Input.touchCount > 0)
             {
-                gameState = GameState.Playing;
-                birdController.EnableGravity();
+                GameState = GameState.Playing;
+                birdController.SetGravity(true);
             }
             if (birdController.dead)
             {
-                gameState = GameState.GameOver;
+                GameState = GameState.GameOver;
+                birdController.SetGravity(false);
             }
         }
     }

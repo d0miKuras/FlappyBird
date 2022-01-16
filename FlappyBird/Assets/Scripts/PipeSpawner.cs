@@ -5,7 +5,7 @@ using UnityEngine;
 public class PipeSpawner : MonoBehaviour
 {
     /// <summary>
-    /// A pair of pipe objects.
+    /// A pair of obstacle objects.
     /// </summary>
     public class Obstacle
     {
@@ -43,12 +43,12 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private float gapBetweenObstacles = 2.0f;
     [SerializeField] private float pipeSpawnXPos = 10.0f;
 
-    public bool movePipes { get; set; }
+    public bool ObstacleMovement { get; set; }
 
 
     private ScoreManager scoreManager;
     private GameManager gameManager;
-    public List<Obstacle> pipesList { get; private set; }
+    public List<Obstacle> ObstacleList { get; private set; }
 
 
     private const float PIPE_WIDTH = 0.24f;
@@ -57,26 +57,26 @@ public class PipeSpawner : MonoBehaviour
 
     void Start()
     {
-        pipesList = new List<Obstacle>();
+        ObstacleList = new List<Obstacle>();
         scoreManager = GetComponent<ScoreManager>();
         gameManager = GetComponent<GameManager>();
-        CreateObstacle(1.28f, 0.3f, pipeSpawnXPos);
+        CreateObstacle(1.28f, 0.6f, pipeSpawnXPos);
     }
 
     void Update()
     {
-        MovePipes();
+        HandleObstacleMovement();
         HandleObstacleSpawning();
     }
 
     /// <summary>
-    /// Instantiates a pipe body and pipe head with specified height, x-position and the side. Must be parented to an object so that 
+    /// Instantiates a obstacle body and obstacle head with specified height, x-position and the side. Must be parented to an object so that 
     /// no desync happens when moving pipes.
     /// </summary>
     /// <param name="height"></param>
     /// <param name="xPosition"></param>
     /// <param name="onBottom"></param>
-    /// <returns>A game object with children being the pipe head and pipe body</returns>
+    /// <returns>A game object with children being the obstacle head and obstacle body</returns>
     GameObject CreatePipe(float height, float xPosition, bool onBottom)
     {
         float headYPos = -height + CAMERA_SIZE + (PIPE_HEAD_HEIGHT / 2); // set at the top
@@ -124,31 +124,31 @@ public class PipeSpawner : MonoBehaviour
     {
         var bottomPipe = CreatePipe(gapPosY - (gapSize / 2), xPosition, true);
         var topPipe = CreatePipe((CAMERA_SIZE * 2) - gapPosY - (gapSize / 2), xPosition, false);
-        pipesList.Add(new Obstacle(bottomPipe, topPipe));
+        ObstacleList.Add(new Obstacle(bottomPipe, topPipe));
     }
 
     /// <summary>
-    /// Goes through the list of spawned pipes and moves them to the left.
+    /// Goes through the list of spawned obstacles and moves them to the left.
     /// </summary>
-    void MovePipes()
+    void HandleObstacleMovement()
     {
-        if (gameManager.gameState == GameState.Playing)
+        if (gameManager.GameState == GameState.Playing)
         {
-            for (int i = 0; i < pipesList.Count; i++)
+            for (int i = 0; i < ObstacleList.Count; i++)
             {
-                var pipe = pipesList[i];
-                pipe.Move(pipeSpeed);
+                var obstacle = ObstacleList[i];
+                obstacle.Move(pipeSpeed);
 
-                if (pipe.GetXPos() < 0.0f && !pipe.passed) // Score Handling
+                if (obstacle.GetXPos() < 0.0f && !obstacle.passed) // Score Handling
                 {
-                    pipe.passed = true;
+                    obstacle.passed = true;
                     scoreManager.IncrementScore();
                 }
 
-                if (pipe.GetXPos() < xCleanupThreshold) // Clean up handling
+                if (obstacle.GetXPos() < xCleanupThreshold) // Clean up handling
                 {
-                    pipesList.Remove(pipe);
-                    pipe.CleanUp();
+                    ObstacleList.Remove(obstacle);
+                    obstacle.CleanUp();
                 }
             }
         }
@@ -156,16 +156,15 @@ public class PipeSpawner : MonoBehaviour
 
     void HandleObstacleSpawning()
     {
-        var count = pipesList.Count;
+        var count = ObstacleList.Count;
         if (count < 11)
         {
-            if (pipeSpawnXPos - pipesList[count - 1].GetXPos() > gapBetweenObstacles)
+            if (pipeSpawnXPos - ObstacleList[count - 1].GetXPos() > gapBetweenObstacles)
             {
                 var gapPosY = Random.Range(0.56f, (CAMERA_SIZE * 2) - 0.56f); // 0.56 is an experimental value
-                CreateObstacle(gapPosY, 0.3f, pipeSpawnXPos);
+                CreateObstacle(gapPosY, 0.6f, pipeSpawnXPos);
             }
         }
     }
-
 
 }

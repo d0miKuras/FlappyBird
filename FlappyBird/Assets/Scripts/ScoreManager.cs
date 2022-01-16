@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    private int score;
+    public int Score { get; private set; }
+
+
     // Start is called before the first frame update
     void Awake()
     {
-        score = 0;
-        scoreText.text = $"{score}";
+        Score = 0;
+        scoreText.text = $"{Score}";
     }
 
     // Update is called once per frame
@@ -22,8 +24,8 @@ public class ScoreManager : MonoBehaviour
 
     public void IncrementScore()
     {
-        score++;
-        scoreText.text = $"{score}";
+        Score++;
+        scoreText.text = $"{Score}";
         Debug.Log("Score Increased");
     }
 }

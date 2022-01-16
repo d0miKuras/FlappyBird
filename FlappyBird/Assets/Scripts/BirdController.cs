@@ -39,11 +39,10 @@ public class BirdController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         dead = true;
-        Debug.Log("Collided");
     }
 
-    public void EnableGravity()
+    public void SetGravity(bool val)
     {
-        rb.simulated = true;
+        rb.simulated = val;
     }
 }
