@@ -147,11 +147,15 @@ public class PipeSpawner : MonoBehaviour
 
                 if (obstacle.GetXPos() < xCleanupThreshold) // Clean up handling
                 {
-                    ObstacleList.Remove(obstacle);
-                    obstacle.CleanUp();
+                    CleanupObstacle(obstacle);
                 }
             }
         }
+    }
+    void CleanupObstacle(Obstacle obstacle)
+    {
+        ObstacleList.Remove(obstacle);
+        obstacle.CleanUp();
     }
 
     void HandleObstacleSpawning()
@@ -166,5 +170,17 @@ public class PipeSpawner : MonoBehaviour
             }
         }
     }
+
+    public void DestroyObstaclesOnScreen()
+    {
+        for (int i = 0; i < ObstacleList.Count; i++)
+        {
+            // if the obstacle is on the screen, destroy it
+            if (ObstacleList[i].GetXPos() > (-CAMERA_SIZE / 2) && ObstacleList[i].GetXPos() < (CAMERA_SIZE / 2))
+                CleanupObstacle(ObstacleList[i]);
+        }
+    }
+
+
 
 }

@@ -13,15 +13,18 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BirdController birdController;
-    public GameState GameState { get; private set; }
 
-    // Start is called before the first frame update
+    private PipeSpawner pipeSpawner;
+    public GameState GameState { get; private set; }
+    private int bombCount;
+
     void Start()
     {
+        pipeSpawner = GetComponent<PipeSpawner>();
         GameState = GameState.GameStart;
+        bombCount = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (birdController)
@@ -36,6 +39,20 @@ public class GameManager : MonoBehaviour
                 GameState = GameState.GameOver;
                 birdController.SetGravity(false);
             }
+            else
+            {
+                if (Input.touchCount > 1 && bombCount > 0)
+                {
+                    UseBomb();
+                }
+            }
         }
+    }
+
+    void UseBomb()
+    {
+        Debug.Log("Bomb used");
+        pipeSpawner.DestroyObstaclesOnScreen();
+        bombCount--;
     }
 }
