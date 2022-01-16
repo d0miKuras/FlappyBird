@@ -7,15 +7,15 @@ public class PipeSpawner : MonoBehaviour
     /// <summary>
     /// A pair of pipe objects.
     /// </summary>
-    struct Obstacle
+    class Obstacle
     {
         GameObject topPipe;
         GameObject bottomPipe;
 
-        public Obstacle(GameObject _pipeHead, GameObject _pipeBody)
+        public Obstacle(GameObject _topPipe, GameObject _bottomPipe)
         {
-            bottomPipe = _pipeBody;
-            topPipe = _pipeHead;
+            bottomPipe = _bottomPipe;
+            topPipe = _topPipe;
         }
         public void Move(float speed)
         {
@@ -38,6 +38,8 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private GameObject pipeHeadPrefab;
     [SerializeField] private float pipeSpeed = 1.0f;
     [SerializeField] private float xCleanupThreshold = -1.0f;
+    [SerializeField] private float gapBetweenObstacles = 2.0f;
+    [SerializeField] private float pipeSpawnXPos = 10.0f;
 
 
     private List<Obstacle> pipesList;
@@ -48,14 +50,13 @@ public class PipeSpawner : MonoBehaviour
     void Start()
     {
         pipesList = new List<Obstacle>();
-        CreateObstacle(2f, 0.2f, 1f);
-        CreateObstacle(2f, 0.2f, 2f);
-        CreateObstacle(2f, 0.2f, 3f);
+        CreateObstacle(1.28f, 0.3f, pipeSpawnXPos);
     }
 
     void Update()
     {
         MovePipes();
+        HandleObstacleSpawning();
     }
 
     /// <summary>
@@ -130,6 +131,18 @@ public class PipeSpawner : MonoBehaviour
             {
                 pipesList.Remove(pipe);
                 pipe.CleanUp();
+            }
+        }
+    }
+
+    void HandleObstacleSpawning()
+    {
+        var count = pipesList.Count;
+        if (count < 11)
+        {
+            if (pipeSpawnXPos - pipesList[count - 1].GetXPos() > gapBetweenObstacles)
+            {
+                CreateObstacle(1.28f, 0.3f, pipeSpawnXPos);
             }
         }
     }

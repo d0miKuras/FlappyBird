@@ -154,6 +154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeBodyPrefab: {fileID: 7913737966723443653, guid: 12b0193a8cd544c18aca308122a4a3b6, type: 3}
   pipeHeadPrefab: {fileID: 4722109497909093291, guid: 2e42949a66a26494080ea1e3e86c4dc2, type: 3}
+  pipeSpeed: 1
+  xCleanupThreshold: -1
+  gapBetweenObstacles: 2
+  pipeSpawnXPos: 10
 --- !u!4 &499866899
 Transform:
   m_ObjectHideFlags: 0
@@ -580,7 +584,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!70 &1417442888
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
