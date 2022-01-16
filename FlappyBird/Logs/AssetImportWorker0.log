@@ -6876,3 +6876,122 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004841 seconds.
+Callback registration failed. Increase kMaxCallback.
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 CallbackArrayBase<void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure)>::Register(void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure), void const*)
+ #3 LoadDomainAndUserAssemblies(bool)
+ #4 LoadUserAssemblies()
+ #5 AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+ #6 invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_5::operator()() const
+ #7 _dispatch_client_callout
+ #8 _dispatch_async_and_wait_invoke
+ #9 _dispatch_client_callout
+ #10 _dispatch_main_queue_callback_4CF
+ #11 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #12 __CFRunLoopRun
+ #13 CFRunLoopRunSpecific
+ #14 RunCurrentEventLoopInMode
+ #15 ReceiveNextEventCommon
+ #16 _BlockUntilNextEventMatchingListInModeWithFilter
+ #17 _DPSNextEvent
+ #18 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #19 -[NSApplication run]
+ #20 NSApplicationMain
+ #21 EditorMain(int, char const**)
+ #22 main
+ #23 start
+ #24 ???
+
+Fatal Error! Callback registration failed. Increase kMaxCallback.
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 CallbackArrayBase<void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure)>::Register(void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure), void const*)
+ #3 LoadDomainAndUserAssemblies(bool)
+ #4 LoadUserAssemblies()
+ #5 AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+ #6 invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_5::operator()() const
+ #7 _dispatch_client_callout
+ #8 _dispatch_async_and_wait_invoke
+ #9 _dispatch_client_callout
+ #10 _dispatch_main_queue_callback_4CF
+ #11 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #12 __CFRunLoopRun
+ #13 CFRunLoopRunSpecific
+ #14 RunCurrentEventLoopInMode
+ #15 ReceiveNextEventCommon
+ #16 _BlockUntilNextEventMatchingListInModeWithFilter
+ #17 _DPSNextEvent
+ #18 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #19 -[NSApplication run]
+ #20 NSApplicationMain
+ #21 EditorMain(int, char const**)
+ #22 main
+ #23 start
+ #24 ???
+ #0 GetStacktrace(int)
+ #1 DebugStringToFile(DebugStringToFileData const&)
+ #2 EditorMonoConsole::LogToConsoleImplementation(CppLogEntry const&)
+ #3 EditorMonoConsole::LogToConsoleImplementation(DebugStringToFileData const&)
+ #4 LogToConsoleImplementation(DebugStringToFileData const&)
+ #5 DebugStringToFilePostprocessedStacktrace(DebugStringToFileData const&)
+ #6 DebugStringToFile(DebugStringToFileData const&)
+ #7 CallbackArrayBase<void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure)>::Register(void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure), void const*)
+ #8 LoadDomainAndUserAssemblies(bool)
+ #9 LoadUserAssemblies()
+ #10 AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+ #11 invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_5::operator()() const
+ #12 _dispatch_client_callout
+ #13 _dispatch_async_and_wait_invoke
+ #14 _dispatch_client_callout
+ #15 _dispatch_main_queue_callback_4CF
+ #16 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+ #17 __CFRunLoopRun
+ #18 CFRunLoopRunSpecific
+ #19 RunCurrentEventLoopInMode
+ #20 ReceiveNextEventCommon
+ #21 _BlockUntilNextEventMatchingListInModeWithFilter
+ #22 _DPSNextEvent
+ #23 -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+ #24 -[NSApplication run]
+ #25 NSApplicationMain
+ #26 EditorMain(int, char const**)
+ #27 main
+ #28 start
+ #29 ???
+
+Obtained 30 stack frames.
+#0  0x007fff203e792e in __pthread_kill
+#1  0x007fff2036b411 in abort
+#2  0x0000011328a66e in CrashDontLaunchBugReporter()
+#3  0x00000110facce7 in EditorMonoConsole::LogToConsoleImplementation(CppLogEntry const&)
+#4  0x00000110fac0bc in EditorMonoConsole::LogToConsoleImplementation(DebugStringToFileData const&)
+#5  0x00000110fada8e in LogToConsoleImplementation(DebugStringToFileData const&)
+#6  0x00000112e041ad in DebugStringToFilePostprocessedStacktrace(DebugStringToFileData const&)
+#7  0x00000112e04a93 in DebugStringToFile(DebugStringToFileData const&)
+#8  0x0000010e970554 in CallbackArrayBase<void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure)>::Register(void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure), void const*)
+#9  0x000001119833a8 in LoadDomainAndUserAssemblies(bool)
+#10 0x00000111985c4f in LoadUserAssemblies()
+#11 0x00000111e80799 in AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+#12 0x00000111eac1ac in invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_5::operator()() const
+#13 0x007fff2026c806 in _dispatch_client_callout
+#14 0x007fff2027968d in _dispatch_async_and_wait_invoke
+#15 0x007fff2026c806 in _dispatch_client_callout
+#16 0x007fff20278b4f in _dispatch_main_queue_callback_4CF
+#17 0x007fff2054c5e8 in __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+#18 0x007fff2050e7d2 in __CFRunLoopRun
+#19 0x007fff2050d64c in CFRunLoopRunSpecific
+#20 0x007fff2874bab3 in RunCurrentEventLoopInMode
+#21 0x007fff2874b815 in ReceiveNextEventCommon
+#22 0x007fff2874b5b3 in _BlockUntilNextEventMatchingListInModeWithFilter
+#23 0x007fff22d0e6f2 in _DPSNextEvent
+#24 0x007fff22d0cec5 in -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+#25 0x007fff22cff239 in -[NSApplication run]
+#26 0x007fff22cd347c in NSApplicationMain
+#27 0x000001132d1266 in EditorMain(int, char const**)
+#28 0x000001132d1499 in main
+#29 0x007fff20431f5d in start

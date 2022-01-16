@@ -7,15 +7,17 @@ public class PipeSpawner : MonoBehaviour
     /// <summary>
     /// A pair of pipe objects.
     /// </summary>
-    class Obstacle
+    public class Obstacle
     {
         GameObject topPipe;
         GameObject bottomPipe;
+        public bool passed;
 
         public Obstacle(GameObject _topPipe, GameObject _bottomPipe)
         {
             bottomPipe = _bottomPipe;
             topPipe = _topPipe;
+            passed = false;
         }
         public void Move(float speed)
         {
@@ -41,8 +43,14 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private float gapBetweenObstacles = 2.0f;
     [SerializeField] private float pipeSpawnXPos = 10.0f;
 
+    public bool movePipes { get; set; }
 
-    private List<Obstacle> pipesList;
+
+    private ScoreManager scoreManager;
+    private GameManager gameManager;
+    public List<Obstacle> pipesList { get; private set; }
+
+
     private const float PIPE_WIDTH = 0.24f;
     private const float CAMERA_SIZE = 1.28f;
     private const float PIPE_HEAD_HEIGHT = 0.12f;
@@ -50,6 +58,8 @@ public class PipeSpawner : MonoBehaviour
     void Start()
     {
         pipesList = new List<Obstacle>();
+        scoreManager = GetComponent<ScoreManager>();
+        gameManager = GetComponent<GameManager>();
         CreateObstacle(1.28f, 0.3f, pipeSpawnXPos);
     }
 
@@ -122,15 +132,24 @@ public class PipeSpawner : MonoBehaviour
     /// </summary>
     void MovePipes()
     {
-        for (int i = 0; i < pipesList.Count; i++)
+        if (gameManager.gameState == GameState.Playing)
         {
-            var pipe = pipesList[i];
-            pipe.Move(pipeSpeed);
-
-            if (pipe.GetXPos() < xCleanupThreshold)
+            for (int i = 0; i < pipesList.Count; i++)
             {
-                pipesList.Remove(pipe);
-                pipe.CleanUp();
+                var pipe = pipesList[i];
+                pipe.Move(pipeSpeed);
+
+                if (pipe.GetXPos() < 0.0f && !pipe.passed) // Score Handling
+                {
+                    pipe.passed = true;
+                    scoreManager.IncrementScore();
+                }
+
+                if (pipe.GetXPos() < xCleanupThreshold) // Clean up handling
+                {
+                    pipesList.Remove(pipe);
+                    pipe.CleanUp();
+                }
             }
         }
     }
@@ -142,7 +161,8 @@ public class PipeSpawner : MonoBehaviour
         {
             if (pipeSpawnXPos - pipesList[count - 1].GetXPos() > gapBetweenObstacles)
             {
-                CreateObstacle(1.28f, 0.3f, pipeSpawnXPos);
+                var gapPosY = Random.Range(0.56f, (CAMERA_SIZE * 2) - 0.56f); // 0.56 is an experimental value
+                CreateObstacle(gapPosY, 0.3f, pipeSpawnXPos);
             }
         }
     }

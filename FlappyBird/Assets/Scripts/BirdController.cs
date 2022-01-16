@@ -7,10 +7,15 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float velocity = 1.0f;
     private Rigidbody2D rb;
     private Touch touch;
+    public bool dead { get; private set; }
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.simulated = false;
+        dead = false;
     }
 
     // Update is called once per frame
@@ -19,7 +24,7 @@ public class BirdController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began && !dead)
             {
                 Jump();
             }
@@ -33,6 +38,12 @@ public class BirdController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        dead = true;
         Debug.Log("Collided");
+    }
+
+    public void EnableGravity()
+    {
+        rb.simulated = true;
     }
 }
