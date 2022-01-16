@@ -60,7 +60,7 @@ public class PipeSpawner : MonoBehaviour
         ObstacleList = new List<Obstacle>();
         scoreManager = GetComponent<ScoreManager>();
         gameManager = GetComponent<GameManager>();
-        CreateObstacle(1.28f, 0.6f, pipeSpawnXPos);
+        CreateObstacle(1.28f, 1.5f, pipeSpawnXPos);
     }
 
     void Update()
@@ -166,7 +166,7 @@ public class PipeSpawner : MonoBehaviour
             if (pipeSpawnXPos - ObstacleList[count - 1].GetXPos() > gapBetweenObstacles)
             {
                 var gapPosY = Random.Range(0.56f, (CAMERA_SIZE * 2) - 0.56f); // 0.56 is an experimental value
-                CreateObstacle(gapPosY, 0.6f, pipeSpawnXPos);
+                CreateObstacle(gapPosY, 1.5f, pipeSpawnXPos);
             }
         }
     }

@@ -15,12 +15,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BirdController birdController;
 
     private PipeSpawner pipeSpawner;
+    private ScoreManager scoreManager;
     public GameState GameState { get; private set; }
     private int bombCount;
 
     void Start()
     {
         pipeSpawner = GetComponent<PipeSpawner>();
+        scoreManager = GetComponent<ScoreManager>();
         GameState = GameState.GameStart;
         bombCount = 1;
     }
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (Input.touchCount > 1 && bombCount > 0)
+                if (Input.touchCount > 1 && scoreManager.BombCount > 0)
                 {
                     UseBomb();
                 }
@@ -53,6 +55,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Bomb used");
         pipeSpawner.DestroyObstaclesOnScreen();
-        bombCount--;
+        scoreManager.DecrementBomb();
     }
 }

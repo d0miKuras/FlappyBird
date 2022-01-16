@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text bombCountText;
     public int Score { get; private set; }
-
+    public int BombCount { get; private set; }
 
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +27,16 @@ public class ScoreManager : MonoBehaviour
     {
         Score++;
         scoreText.text = $"{Score}";
-        Debug.Log("Score Increased");
+        if (Score % 10 == 0 && BombCount < 3)
+        {
+            BombCount++;
+            bombCountText.text = $"{BombCount}";
+        }
+
     }
+    public void DecrementBomb()
+    {
+        BombCount--;
+    }
+
 }
