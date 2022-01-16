@@ -21,9 +21,14 @@ public class BirdController : MonoBehaviour
             touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                rb.velocity = Vector2.up * velocity;
+                Jump();
             }
         }
+    }
+
+    private void Jump()
+    {
+        rb.velocity = Vector2.up * velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
