@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 1295025855}
   - component: {fileID: 1295025854}
   m_Layer: 0
-  m_Name: Button
+  m_Name: PlayBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1221,7 +1221,7 @@ GameObject:
   - component: {fileID: 1603339488}
   - component: {fileID: 1603339487}
   m_Layer: 0
-  m_Name: Button
+  m_Name: MainMenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
