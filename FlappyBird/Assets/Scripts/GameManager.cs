@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -13,18 +14,24 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BirdController birdController;
+    [SerializeField] private GameObject gameOverWindow;
 
     private PipeSpawner pipeSpawner;
     private ScoreManager scoreManager;
+    private UIManager ui;
     public GameState GameState { get; private set; }
     private int bombCount;
+    private bool gameOverWindowShown;
 
     void Start()
     {
         pipeSpawner = GetComponent<PipeSpawner>();
         scoreManager = GetComponent<ScoreManager>();
+        ui = GetComponent<UIManager>();
         GameState = GameState.GameStart;
-        bombCount = 1;
+        gameOverWindowShown = false;
+        if (gameOverWindow)
+            gameOverWindow.SetActive(false);
     }
 
     void Update()
@@ -40,6 +47,11 @@ public class GameManager : MonoBehaviour
             {
                 GameState = GameState.GameOver;
                 birdController.SetGravity(false);
+                if (gameOverWindow && !gameOverWindowShown)
+                {
+                    gameOverWindow.SetActive(true);
+                    gameOverWindowShown = true;
+                }
             }
             else
             {
@@ -57,4 +69,10 @@ public class GameManager : MonoBehaviour
         pipeSpawner.DestroyObstaclesOnScreen();
         scoreManager.DecrementBomb();
     }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
 }

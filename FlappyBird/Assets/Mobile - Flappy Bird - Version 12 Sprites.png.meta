@@ -22,7 +22,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_5
   - first:
       213: 6124130483509997730
-    second: Mobile - Flappy Bird - Version 12 Sprites_6
+    second: UI-Menu-Button
   - first:
       213: 6297297506034485570
     second: Mobile - Flappy Bird - Version 12 Sprites_7
@@ -43,7 +43,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_12
   - first:
       213: 5955124824224392516
-    second: Mobile - Flappy Bird - Version 12 Sprites_13
+    second: UI-GameOver-text
   - first:
       213: 2037097137259322841
     second: Mobile - Flappy Bird - Version 12 Sprites_14
@@ -55,7 +55,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_16
   - first:
       213: -5322340071041531647
-    second: Mobile - Flappy Bird - Version 12 Sprites_17
+    second: UI- FlappyBird - Text
   - first:
       213: -3459855430096573399
     second: Mobile - Flappy Bird - Version 12 Sprites_18
@@ -94,10 +94,10 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_29
   - first:
       213: 7398090637607482551
-    second: Mobile - Flappy Bird - Version 12 Sprites_30
+    second: UI-Play-button
   - first:
       213: -6254503077443945986
-    second: Mobile - Flappy Bird - Version 12 Sprites_31
+    second: UI-Leaderboards-button
   - first:
       213: -9122068741642065400
     second: Mobile - Flappy Bird - Version 12 Sprites_32
@@ -142,7 +142,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_45
   - first:
       213: 7866015679261102617
-    second: Mobile - Flappy Bird - Version 12 Sprites_46
+    second: UI-GameOver-panel
   - first:
       213: 1687489963281649004
     second: Mobile - Flappy Bird - Version 12 Sprites_47
@@ -499,7 +499,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_6
+      name: UI-Menu-Button
       rect:
         serializedVersion: 2
         x: 462
@@ -628,8 +628,8 @@ TextureImporter:
       name: Mobile - Flappy Bird - Version 12 Sprites_12
       rect:
         serializedVersion: 2
-        x: 395
-        y: 432
+        x: 435
+        y: 294
         width: 49
         height: 21
       alignment: 0
@@ -646,12 +646,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_13
+      name: UI-GameOver-text
       rect:
         serializedVersion: 2
-        x: 449
+        x: 395
         y: 432
-        width: 42
+        width: 96
         height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -730,7 +730,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_17
+      name: UI- FlappyBird - Text
       rect:
         serializedVersion: 2
         x: 351
@@ -1003,7 +1003,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_30
+      name: UI-Play-button
       rect:
         serializedVersion: 2
         x: 354
@@ -1024,7 +1024,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_31
+      name: UI-Leaderboards-button
       rect:
         serializedVersion: 2
         x: 414
@@ -1339,7 +1339,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_46
+      name: UI-GameOver-panel
       rect:
         serializedVersion: 2
         x: 3
