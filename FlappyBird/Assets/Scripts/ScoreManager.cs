@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         Score = 0;
-        scoreText.text = $"{Score}";
+        scoreText.text = Score.ToString();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
         if (Score % 10 == 0 && BombCount < 3)
         {
             BombCount++;
-            bombCountText.text = $"{BombCount}";
+            bombCountText.text = BombCount.ToString();
         }
 
     }

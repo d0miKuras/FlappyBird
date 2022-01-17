@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private PipeSpawner pipeSpawner;
     private ScoreManager scoreManager;
+    private HighScoreManager highScoreManager;
     private UIManager ui;
     public GameState GameState { get; private set; }
     private int bombCount;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         pipeSpawner = GetComponent<PipeSpawner>();
         scoreManager = GetComponent<ScoreManager>();
+        highScoreManager = GetComponent<HighScoreManager>();
         ui = GetComponent<UIManager>();
         GameState = GameState.GameStart;
         gameOverWindowShown = false;
@@ -43,14 +45,21 @@ public class GameManager : MonoBehaviour
                 GameState = GameState.Playing;
                 birdController.SetGravity(true);
             }
-            if (birdController.dead)
+            if (birdController.dead) // Game Over
             {
-                GameState = GameState.GameOver;
-                birdController.SetGravity(false);
-                if (gameOverWindow && !gameOverWindowShown)
+                GameState = GameState.GameOver; // Set the game state to prevent pipes from moving
+                birdController.SetGravity(false); // Stop bird from moving
+                if (gameOverWindow && !gameOverWindowShown) // Show Game Over screen
                 {
                     gameOverWindow.SetActive(true);
                     gameOverWindowShown = true;
+                    // TODO: Show score in Game Over window
+                    if (highScoreManager.IsTopFive(scoreManager.Score)) // If the score is top 5 of high scores, 
+                                                                        // let the user know and add it to the list
+                    {
+                        highScoreManager.AddHighScore(scoreManager.Score);
+                        Debug.Log("Score added to the top 5 high scores!"); // TODO: show on screen
+                    }
                 }
             }
             else
