@@ -201,7 +201,7 @@ MonoBehaviour:
   xCleanupThreshold: -3
   gapBetweenObstacles: 1.25
   gapBetweenPipes: 1
-  pipeSpawnXPos: 5
+  pipeSpawnXPos: 3
 --- !u!4 &499866899
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,7 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea470e5babda640fba2ea302e0684c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 4
+  velocity: 3
 --- !u!50 &1417442887
 Rigidbody2D:
   serializedVersion: 4
