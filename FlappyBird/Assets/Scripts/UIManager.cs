@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverWindow;
     [SerializeField] private GameObject mainMenuButtons;
     [SerializeField] private GameObject leaderboard;
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject counters;
 
     private HighScoreManager highScoreManager;
 
@@ -67,6 +69,15 @@ public class UIManager : MonoBehaviour
             mainMenuButtons.SetActive(false);
             UpdateLeaderboard();
             leaderboard.SetActive(true);
+        }
+    }
+
+    public void ShowPauseScreen(bool value)
+    {
+        if (pauseScreen && counters)
+        {
+            pauseScreen.SetActive(value);
+            counters.SetActive(!value);
         }
     }
 

@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
                 GameState = GameState.Playing;
                 birdController.SetGravity(true);
             }
+            else if (GameState == GameState.GamePaused)
+            {
+                birdController.SetGravity(false);
+            }
             if (birdController.dead) // Game Over
             {
                 GameState = GameState.GameOver; // Set the game state to prevent pipes from moving
@@ -61,9 +65,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            // TODO: Pause
-            else
+            else if (GameState == GameState.Playing)
             {
+                birdController.SetGravity(true);
                 if (Input.touchCount > 1 && scoreManager.BombCount > 0)
                 {
                     UseBomb();
@@ -77,5 +81,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("Bomb used");
         pipeSpawner.DestroyObstaclesOnScreen();
         scoreManager.DecrementBomb();
+    }
+
+    public void Pause()
+    {
+        GameState = GameState.GamePaused;
+        ui.ShowPauseScreen(true);
+    }
+
+    public void Unpause()
+    {
+        GameState = GameState.Playing;
+        ui.ShowPauseScreen(false);
     }
 }

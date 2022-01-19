@@ -151,7 +151,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_48
   - first:
       213: -6271202071706072646
-    second: Mobile - Flappy Bird - Version 12 Sprites_49
+    second: PauseButton
   - first:
       213: -5116034788630571233
     second: Mobile - Flappy Bird - Version 12 Sprites_50
@@ -1402,7 +1402,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_49
+      name: PauseButton
       rect:
         serializedVersion: 2
         x: 121
