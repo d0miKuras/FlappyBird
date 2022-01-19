@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -87,10 +86,4 @@ public class HighScoreManager : MonoBehaviour
         // Returns whether or not there is an high score lower than the given one
         return highScores.highscoreList.Exists(s => s.score < _score);
     }
-
-    void Test()
-    {
-        Debug.Log(PlayerPrefs.GetString("highscores"));
-    }
 }
-

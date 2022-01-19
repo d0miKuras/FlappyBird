@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -181,7 +180,4 @@ public class PipeSpawner : MonoBehaviour
                 CleanupObstacle(ObstacleList[i]);
         }
     }
-
-
-
 }

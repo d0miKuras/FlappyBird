@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BirdController : MonoBehaviour
@@ -9,8 +7,6 @@ public class BirdController : MonoBehaviour
     private Touch touch;
     public bool dead { get; private set; }
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,7 +14,6 @@ public class BirdController : MonoBehaviour
         dead = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0)
