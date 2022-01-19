@@ -199,7 +199,8 @@ MonoBehaviour:
   pipeHeadPrefab: {fileID: 4722109497909093291, guid: 2e42949a66a26494080ea1e3e86c4dc2, type: 3}
   pipeSpeed: 1
   xCleanupThreshold: -3
-  gapBetweenObstacles: 2
+  gapBetweenObstacles: 1.25
+  gapBetweenPipes: 1
   pipeSpawnXPos: 5
 --- !u!4 &499866899
 Transform:
@@ -1416,7 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea470e5babda640fba2ea302e0684c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 2
+  velocity: 4
 --- !u!50 &1417442887
 Rigidbody2D:
   serializedVersion: 4
@@ -1432,7 +1433,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.4
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

@@ -41,6 +41,7 @@ public class PipeSpawner : MonoBehaviour
     [SerializeField] private float pipeSpeed = 1.0f;
     [SerializeField] private float xCleanupThreshold = -1.0f;
     [SerializeField] private float gapBetweenObstacles = 2.0f;
+    [SerializeField] private float gapBetweenPipes = 1.0f;
     [SerializeField] private float pipeSpawnXPos = 10.0f;
 
     public bool ObstacleMovement { get; set; }
@@ -60,7 +61,7 @@ public class PipeSpawner : MonoBehaviour
         ObstacleList = new List<Obstacle>();
         scoreManager = GetComponent<ScoreManager>();
         gameManager = GetComponent<GameManager>();
-        CreateObstacle(1.28f, 1.5f, pipeSpawnXPos);
+        CreateObstacle(1.28f, gapBetweenPipes, pipeSpawnXPos);
     }
 
     void Update()
@@ -166,7 +167,7 @@ public class PipeSpawner : MonoBehaviour
             if (pipeSpawnXPos - ObstacleList[count - 1].GetXPos() > gapBetweenObstacles)
             {
                 var gapPosY = Random.Range(0.56f, (CAMERA_SIZE * 2) - 0.56f); // 0.56 is an experimental value
-                CreateObstacle(gapPosY, 1.5f, pipeSpawnXPos);
+                CreateObstacle(gapPosY, gapBetweenPipes, pipeSpawnXPos);
             }
         }
     }
