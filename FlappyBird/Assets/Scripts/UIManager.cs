@@ -7,19 +7,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverWindow;
+    [SerializeField] private GameObject mainMenuButtons;
+    [SerializeField] private GameObject leaderboard;
+
+    private HighScoreManager highScoreManager;
 
     void Awake()
     {
-        if (gameOverWindow)
-        {
-            ShowHighScoreText(false);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        highScoreManager = GetComponent<HighScoreManager>();
+        ShowHighScoreText(false);
+        ShowMainMenuButtons();
     }
 
     public void ShowGameOverWindow(bool value)
@@ -51,6 +48,43 @@ public class UIManager : MonoBehaviour
         if (gameOverWindow)
         {
             gameOverWindow.transform.Find("NewHighScore").gameObject.SetActive(value);
+        }
+    }
+
+    public void ShowMainMenuButtons()
+    {
+        if (mainMenuButtons && leaderboard)
+        {
+            mainMenuButtons.SetActive(true);
+            leaderboard.SetActive(false);
+        }
+    }
+
+    public void ShowLeaderboard()
+    {
+        if (mainMenuButtons && leaderboard)
+        {
+            mainMenuButtons.SetActive(false);
+            UpdateLeaderboard();
+            leaderboard.SetActive(true);
+        }
+    }
+
+    private void UpdateLeaderboard()
+    {
+        if (leaderboard && highScoreManager)
+        {
+            var text = leaderboard.transform.Find("HighScoreContainer").Find("HighScoreList").GetComponent<Text>();
+
+            var list = highScoreManager.GetHighscores();
+            if (text && list != null)
+            {
+                text.text = "";
+                foreach (var score in list.highscoreList)
+                {
+                    text.text += $"{score.score}\n";
+                }
+            }
         }
     }
 }
